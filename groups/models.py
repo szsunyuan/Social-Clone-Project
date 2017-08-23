@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.core.urlresolvers import reverse
 import misaka
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -7,7 +8,7 @@ from django import template
 register = template.Library()
 
 class Group(models.Model):
-    name = models.CharField(max_length=255, unique)
+    name = models.CharField(max_length=255,unique=True)
     slug = models.SlugField(allow_unicode=True,unique=True)
     description = models.TextField(blank=True,default='')
     description_html = models.TextField(editable=False,default='',blank=True)
